@@ -13,17 +13,9 @@ public class teleOp extends LinearOpMode {
     double udJoyFixed = 0.0;
     double lrJoyFixed = 0.0;
 
-
-
-
     public static double map(float value) {
-
-
         return ((value + 1) / 2) * (2000) - 1000;
     }
-
-
-
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -43,10 +35,15 @@ public class teleOp extends LinearOpMode {
             udJoyFixed = map(gamepad1.right_stick_y);
             lrJoyFixed = map(gamepad1.right_stick_x);
 
-            frontLeft.setVelocity(-udJoyFixed + lrJoyFixed);
-            frontRight.setVelocity(-udJoyFixed + lrJoyFixed);
+            frontLeft.setVelocity(udJoyFixed + lrJoyFixed);
+            frontRight.setVelocity(0.5 * (-udJoyFixed + lrJoyFixed));
             backLeft.setVelocity(udJoyFixed - lrJoyFixed);
             backRight.setVelocity(-udJoyFixed - lrJoyFixed);
+
+            frontLeft.setVelocity(map(gamepad1.left_stick_x));
+            frontRight.setVelocity(map(gamepad1.left_stick_x));
+            backLeft.setVelocity(-map(gamepad1.left_stick_x));
+            backRight.setVelocity(-map(gamepad1.left_stick_x));
         }
     }
 }
