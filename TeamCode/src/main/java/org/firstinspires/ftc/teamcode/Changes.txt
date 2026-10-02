@@ -1,2 +1,7 @@
 9/26/26:
 created omniDrive method, fixed bugs and created initial commit on this repository
+
+10/1/26
+i fixed the problem with the encoder for the front right motor not working properly by resetting
+all the encoders on init and making the back button also reset the encoders so we can fix issues
+without a hard reboot. i also added the ability to rotate about the center of the robot.
