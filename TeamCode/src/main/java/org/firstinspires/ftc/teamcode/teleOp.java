@@ -40,16 +40,32 @@ public class teleOp extends LinearOpMode {
             lrJoyFixed = map(gamepad1.right_stick_x);
 
             if (!(gamepad1.left_stick_x == 0)){
-                frontLeft.setVelocity(map(gamepad1.left_stick_x));
-                frontRight.setVelocity(map(gamepad1.left_stick_x));
-                backLeft.setVelocity(map(gamepad1.left_stick_x));
-                backRight.setVelocity(map(gamepad1.left_stick_x));
+
+                if (gamepad1.left_trigger_pressed) {
+                    frontLeft.setVelocity(map(gamepad1.left_stick_x) * 0.5);
+                    frontRight.setVelocity(map(gamepad1.left_stick_x) * 0.5);
+                    backLeft.setVelocity(map(gamepad1.left_stick_x) * 0.5);
+                    backRight.setVelocity(map(gamepad1.left_stick_x) * 0.5);
+                } else {
+                    frontLeft.setVelocity(map(gamepad1.left_stick_x));
+                    frontRight.setVelocity(map(gamepad1.left_stick_x));
+                    backLeft.setVelocity(map(gamepad1.left_stick_x));
+                    backRight.setVelocity(map(gamepad1.left_stick_x));
+                }
+
             } else {
 
-                frontLeft.setVelocity(udJoyFixed - lrJoyFixed);
-                frontRight.setVelocity((-udJoyFixed - lrJoyFixed));
-                backLeft.setVelocity(udJoyFixed + lrJoyFixed);
-                backRight.setVelocity(-udJoyFixed + lrJoyFixed);
+                if (gamepad1.left_trigger_pressed){
+                    frontLeft.setVelocity((udJoyFixed - lrJoyFixed) * 0.5);
+                    frontRight.setVelocity((-udJoyFixed - lrJoyFixed) * 0.5);
+                    backLeft.setVelocity((udJoyFixed + lrJoyFixed) * 0.5);
+                    backRight.setVelocity((-udJoyFixed + lrJoyFixed) * 0.5);
+                } else {
+                    frontLeft.setVelocity(udJoyFixed - lrJoyFixed);
+                    frontRight.setVelocity((-udJoyFixed - lrJoyFixed));
+                    backLeft.setVelocity(udJoyFixed + lrJoyFixed);
+                    backRight.setVelocity(-udJoyFixed + lrJoyFixed);
+                }
             }
 
             if (gamepad1.backWasPressed()){

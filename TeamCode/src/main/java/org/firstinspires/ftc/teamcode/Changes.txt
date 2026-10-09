@@ -5,3 +5,7 @@ created omniDrive method, fixed bugs and created initial commit on this reposito
 i fixed the problem with the encoder for the front right motor not working properly by resetting
 all the encoders on init and making the back button also reset the encoders so we can fix issues
 without a hard reboot. i also added the ability to rotate about the center of the robot.
+
+10/8/26
+today i worked on getting the apriltag pipeline working and testing the validity of the default calibration data
+which needed to be redone, i then began the recalibration process.
