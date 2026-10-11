@@ -9,3 +9,7 @@ without a hard reboot. i also added the ability to rotate about the center of th
 10/8/26
 today i worked on getting the apriltag pipeline working and testing the validity of the default calibration data
 which needed to be redone, i then began the recalibration process.
+
+10/11/26
+i refined the auto code and moved the functional parts of the code into autoTesting and we further tested the
+flywheel launcher and it ended up being dangerously powerful.
