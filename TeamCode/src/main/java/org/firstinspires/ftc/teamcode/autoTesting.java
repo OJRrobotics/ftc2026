@@ -22,20 +22,25 @@ public class autoTesting extends LinearOpMode {
     private static final boolean USE_WEBCAM = true;
     private VisionPortal visionPortal;
     double xoffset;
+    DcMotorEx frontLeft = hardwareMap.get(DcMotorEx.class, "frontLeft");
+    DcMotorEx frontRight = hardwareMap.get(DcMotorEx.class, "frontRight");
+    DcMotorEx backLeft = hardwareMap.get(DcMotorEx.class, "backLeft");
+    DcMotorEx backRight = hardwareMap.get(DcMotorEx.class, "backRight");
 
     @Override
     public void runOpMode() throws InterruptedException {
         CameraCompatibilityManager.getInstance().addQuirk(0x046D, 0x0825, CameraCompatibilityManager.Quirk.AVOID_LIB_USB_RESET_DEVICE);
 
-        DcMotorEx frontLeft = hardwareMap.get(DcMotorEx.class, "frontLeft");
-        DcMotorEx frontRight = hardwareMap.get(DcMotorEx.class, "frontRight");
-        DcMotorEx backLeft = hardwareMap.get(DcMotorEx.class, "backLeft");
-        DcMotorEx backRight = hardwareMap.get(DcMotorEx.class, "backRight");
+
 
         frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         initAprilTag();
         waitForStart();
@@ -46,10 +51,18 @@ public class autoTesting extends LinearOpMode {
         backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         backRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         while (opModeIsActive()){
+            frontLeft.setVelocity(5000);
+            frontRight.setVelocity(-5000);
+            backLeft.setVelocity(-5000);
+            backRight.setVelocity(5000);
 
+            centerOnTag();
+            sleep(200);
         }
+
     }
     private boolean centerOnTag(){
+        boolean b = false;
         List<AprilTagDetection> currentDetections = aprilTag.getDetections();
 
         for (AprilTagDetection detection : currentDetections) {
@@ -60,10 +73,29 @@ public class autoTesting extends LinearOpMode {
             }
             xoffset = detection.ftcPose.x;
         }
-
-        if (xoffset < 0){
+        if (currentDetections.isEmpty()){
+            b = false;
 
         }
+        if (xoffset < 0){
+            frontLeft.setVelocity(5000);
+            frontRight.setVelocity(-5000);
+            backLeft.setVelocity(-5000);
+            backRight.setVelocity(5000);
+        } else if (xoffset > 0){
+            frontLeft.setVelocity(-5000);
+            frontRight.setVelocity(5000);
+            backLeft.setVelocity(5000);
+            backRight.setVelocity(-5000);
+        } else {
+            while (xoffset == 0) {
+                sleep(1000);
+                if (xoffset == 0) {
+                    b = true;
+                }
+            }
+        }
+        return b;
     }
     private void initAprilTag() {
 
