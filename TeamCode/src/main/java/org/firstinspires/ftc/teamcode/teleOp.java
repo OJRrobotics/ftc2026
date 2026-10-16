@@ -39,6 +39,25 @@ public class teleOp extends LinearOpMode {
             udJoyFixed = map(gamepad1.right_stick_y);
             lrJoyFixed = map(gamepad1.right_stick_x);
 
+            if (gamepad1.a){
+                frontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                frontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                backRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                frontLeft.setTargetPosition(5000);
+                frontRight.setTargetPosition(5000);
+                backLeft.setTargetPosition(5000);
+                backRight.setTargetPosition(5000);
+                frontLeft.setVelocity(7500);
+                frontRight.setVelocity(7500);
+                backLeft.setVelocity(7500);
+                backRight.setVelocity(7500);
+                frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            }
+
             if (!(gamepad1.left_stick_x == 0)){
 
                 if (gamepad1.left_trigger_pressed) {
