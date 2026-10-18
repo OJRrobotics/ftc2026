@@ -25,6 +25,11 @@ public class teleOp extends LinearOpMode {
         DcMotorEx backLeft = hardwareMap.get(DcMotorEx.class, "backLeft");
         DcMotorEx backRight = hardwareMap.get(DcMotorEx.class, "backRight");
 
+        int currentPosfl = 0;
+        int currentPosfr = 0;
+        int currentPosbl = 0;
+        int currentPosbr = 0;
+
         frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -39,19 +44,26 @@ public class teleOp extends LinearOpMode {
             udJoyFixed = map(gamepad1.right_stick_y);
             lrJoyFixed = map(gamepad1.right_stick_x);
 
-            if (gamepad1.a){
+            if (gamepad1.a) {
+                currentPosfl = frontLeft.getCurrentPosition();
+                currentPosfr = frontRight.getCurrentPosition();
+                currentPosbl = backLeft.getCurrentPosition();
+                currentPosbr = frontRight.getCurrentPosition();
+            }
+            if (gamepad1.b) {
                 frontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 frontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 backRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                frontLeft.setTargetPosition(5000);
-                frontRight.setTargetPosition(5000);
-                backLeft.setTargetPosition(5000);
-                backRight.setTargetPosition(5000);
-                frontLeft.setVelocity(7500);
-                frontRight.setVelocity(7500);
-                backLeft.setVelocity(7500);
-                backRight.setVelocity(7500);
+                frontLeft.setTargetPosition(currentPosfl);
+                frontRight.setTargetPosition(currentPosfr);
+                backLeft.setTargetPosition(currentPosbl);
+                backRight.setTargetPosition(currentPosbr);
+                frontLeft.setVelocity(3500);
+                frontRight.setVelocity(3500);
+                backLeft.setVelocity(3500);
+                backRight.setVelocity(3500);
+                sleep(2000);
                 frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

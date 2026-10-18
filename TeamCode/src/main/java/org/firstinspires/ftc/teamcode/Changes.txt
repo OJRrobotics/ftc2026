@@ -3,7 +3,7 @@ created omniDrive method, fixed bugs and created initial commit on this reposito
 
 10/1/26
 i fixed the problem with the encoder for the front right motor not working properly by resetting
-all the encoders on init and making the back button also reset the encoders so we can fix issues
+all the encoders on init and making the back button atolso reset the encoders so we can fix issues
 without a hard reboot. i also added the ability to rotate about the center of the robot.
 
 10/8/26
@@ -13,3 +13,9 @@ which needed to be redone, i then began the recalibration process.
 10/11/26
 i refined the auto code and moved the functional parts of the code into autoTesting and we further tested the
 flywheel launcher and it ended up being dangerously powerful.
+
+10/15/26
+did some testing on the RUN TO POSITION encoder mode (see seperate commit)
+
+10/18/26
+i added a save/return to position ability into TeleOp
