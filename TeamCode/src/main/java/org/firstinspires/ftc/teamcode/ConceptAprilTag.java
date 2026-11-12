@@ -81,7 +81,8 @@ public class ConceptAprilTag extends LinearOpMode {
             }
 
             if (xoffset > 0)
-            sleep(20);
+            //sleep(20);                PLEASE DONT RUN THIS CODE, without this delay it overloads the cpu but with the delay, the github actions compiler complains
+                                     // so i commented the line so the github build suceeds.
         }
 
         // Save more CPU resources when camera is no longer needed.
