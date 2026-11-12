@@ -1,5 +1,5 @@
-##Welcome
-Welcome to the public repository of the code for team 4185 Silver Soldiers, here you can find all code used for our 2026 robot and a change log of said code in the teamcode folder
+# Welcome
+Welcome to the public repository of the code for team *4185 Silver Soldiers*, here you can find all code used for our 2026 robot and a change log of said code in the teamcode folder
 
 ## Getting Help
 ### User Documentation and Tutorials
